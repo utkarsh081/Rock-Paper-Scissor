@@ -1,58 +1,78 @@
-*{
-    margin: 0;
-    padding: 0;
-    text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
-h1{
-    height: 5rem;
-    color: aqua;
-    background-color: black;
-    line-height: 5rem;
+
+body {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  color: white;
+  text-align: center;
+  padding: 20px;
 }
-.choice{
-    height: 165px;
-    width: 165px;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
+
+.container {
+  max-width: 600px;
+  margin: auto;
 }
-.choice:hover{
-    cursor: pointer;
-    background-color: aqua;
-    
+
+h1 {
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 3px #00000044;
 }
-.choices{
-    margin-top: 5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
+
+.choices {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
 }
-img{
-    border-radius: 50%;
-    height: 150px;
-    width: 150px;
-    object-fit: cover;
+
+.choice {
+  background-color: white;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s, background 0.2s;
+  cursor: pointer;
+  color: black;
+  width: 100px;
 }
-.score-board{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    margin-top: 3rem;
-    gap: 5rem;
+
+.choice:hover {
+  transform: scale(1.1);
+  background: #f0f0f0;
 }
-#user-score, #computer-score{
-    font-size: 4rem;
+
+.choice img {
+  width: 60px;
+  height: 60px;
 }
-.msg-container{
-    margin-top: 5rem;
+
+.score-board {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px 0;
 }
-#msg{
-    background-color: black;
-    color: white;
-    font-size: 2rem;
-    display: inline;
-    padding: 1rem;
-    border-radius: 1rem;
+
+.score h2 {
+  font-size: 1.2rem;
+}
+
+.score p {
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.msg-container {
+  margin-top: 20px;
+}
+
+#msg {
+  font-size: 1.4rem;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 10px;
 }
