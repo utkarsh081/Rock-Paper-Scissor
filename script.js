@@ -1,67 +1,57 @@
-let userscore = 0;
-let compscore = 0;
-const msg = document.querySelector("#msg");
-const userscorep = document.querySelector("#user-score");
-const compscorep = document.querySelector("#comp-score");
+let userScore = 0;
+let compScore = 0;
 
-const gencompchoice = () =>{
-    let options = ["rock","scissor","paper"];
-    p = Math.floor(Math.random() * 3);
-    return options[p];
+const msg = document.querySelector("#msg");
+const userScoreEl = document.querySelector("#user-score");
+const compScoreEl = document.querySelector("#comp-score");
+
+const genCompChoice = () => {
+  const options = ["rock", "scissor", "paper"];
+  const randomIndex = Math.floor(Math.random() * 3);
+  return options[randomIndex];
 };
-const showWinner =(userWin) =>{
-    if(userWin){
-        userscore++;
-        userscorep.innerText = userscore;
-        msg.innerText = "You Win!";
-        msg.style.backgroundColor = "green";
-    }
-    else{
-        compscore++;
-        compscorep.innerText = compscore;
-        msg.innerText = "You lose!";
-        msg.style.backgroundColor = "red";
-    }
-}
-const playgame =(userchoice)=>{
-    const compchoice = gencompchoice();
-    if(userchoice === compchoice){
-        msg.innerText = "Match Is Draw"
-        msg.style.backgroundColor = "black";
-    }
-    else{
-        let userwin = true;
-        if(userchoice === "rock"){
-            if(compchoice === "paper"){
-                userwin = false;
-            }
-            else{
-                userwin = true;
-            }
-        }
-        else if(userchoice === "paper"){
-            if(compchoice === "rock"){
-                userwin = true;
-            }
-            else{
-                userwin = false;
-            }
-        }
-        else if(userchoice === "scissor"){
-            if(compchoice === "paper"){
-                userwin = true;
-            }
-            else{
-                userwin = false;
-            }
-        }
-        showWinner(userwin);
-    }
+
+const showWinner = (userWin, userChoice, compChoice) => {
+  if (userWin) {
+    userScore++;
+    userScoreEl.innerText = userScore;
+    msg.innerText = `You Win! 🏆 (${userChoice} beats ${compChoice})`;
+    msg.style.backgroundColor = "green";
+  } else {
+    compScore++;
+    compScoreEl.innerText = compScore;
+    msg.innerText = `You Lose! ❌ (${compChoice} beats ${userChoice})`;
+    msg.style.backgroundColor = "red";
+  }
 };
+
+const playGame = (userChoice) => {
+  const compChoice = genCompChoice();
+
+  if (userChoice === compChoice) {
+    msg.innerText = `It's a Draw! 🤝 (Both chose ${userChoice})`;
+    msg.style.backgroundColor = "black";
+    return;
+  }
+
+  let userWin = false;
+
+  if (
+    (userChoice === "rock" && compChoice === "scissor") ||
+    (userChoice === "paper" && compChoice === "rock") ||
+    (userChoice === "scissor" && compChoice === "paper")
+  ) {
+    userWin = true;
+  }
+
+  showWinner(userWin, userChoice, compChoice);
+};
+
+// Add click listeners to all choices
 const choices = document.querySelectorAll(".choice");
-choices.forEach((choice) =>{
-    choice.addEventListener("click",()=>{
-        const userchoice = choice.getAttribute("id");
-        playgame(userchoice);
-    });
+choices.forEach((choice) => {
+  choice.addEventListener("click", () => {
+    const userChoice = choice.getAttribute("id");
+    playGame(userChoice);
+  });
 });
